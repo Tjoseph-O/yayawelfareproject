@@ -1,14 +1,16 @@
 package com.yayawelfare.welfareproject.service;
 
-import com.yayawelfare.welfareproject.data.model.AppUser;
 import com.yayawelfare.welfareproject.dtos.request.LoginRequest;
-import com.yayawelfare.welfareproject.dtos.request.RegisterRequest;
-import com.yayawelfare.welfareproject.dtos.response.UserInfoResponse;
+import com.yayawelfare.welfareproject.dtos.request.RegistrationRequest;
+import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
+import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 
 public interface UserService {
 
-   void register(RegisterRequest request);
+   RegistrationResponse register(RegistrationRequest registrationRequest, String origin);
 
 
-    UserInfoResponse login(LoginRequest request);
+
+
+    UserResponse login(LoginRequest request);
 }

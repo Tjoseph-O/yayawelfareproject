@@ -1,11 +1,14 @@
 package com.yayawelfare.welfareproject.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yayawelfare.welfareproject.data.model.AppUser;
 import com.yayawelfare.welfareproject.data.repository.UserRepository;
 import com.yayawelfare.welfareproject.dtos.request.LoginRequest;
-import com.yayawelfare.welfareproject.dtos.request.RegisterRequest;
-import com.yayawelfare.welfareproject.dtos.response.UserInfoResponse;
+import com.yayawelfare.welfareproject.dtos.request.RegistrationRequest;
+import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
+import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,37 +16,49 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final ModelMapper mapper;
+
+
+
+
+
+
 
 
     @Override
-    public void register(RegisterRequest request){
+    public RegistrationResponse register(RegistrationRequest registrationRequest, String origin){
         AppUser user = new AppUser();
-        user.setFirstName(request.getFirstName());
-        user.setMiddleName(request.getMiddleName());
-        user.setLastName(request.getLastName());
-        user.setEmail(request.getEmail());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setAddress(request.getAddress());
-        user.setPassword(request.getPassword());
+        user.setFirstName(registrationRequest.getFirstName());
+        user.setMiddleName(registrationRequest.getMiddleName());
+        user.setLastName(registrationRequest.getLastName());
+        user.setEmail(registrationRequest.getEmail());
+        user.setPhoneNumber(registrationRequest.getPhoneNumber());
+        user.setAddress(registrationRequest.getAddress());
+        user.setPassword(registrationRequest.getPassword());
         userRepository.save(user);
+        return mapper.map(user, RegistrationResponse.class);
     }
 
     @Override
-    public UserInfoResponse login(LoginRequest request){
+    public UserResponse login(LoginRequest request){
         AppUser user = userRepository.findByPhoneNumberAndPassword(request.getPhoneNumber(),request.getPassword())
                 .orElseThrow(() -> new RuntimeException());
-        return UserInfoResponse.builder()
-                .id(user.getId())
+        return UserResponse.builder()
+//                .id(user.getId())
                 .firstName(user.getFirstName())
                 .middleName(user.getMiddleName())
                 .lastName(user.getLastName())
-                .createdDate(user.getCreatedDate())
+//                .createdDate(user.getCreatedDate())
                 .build();
 
-
-
-
     }
+
+    public UserResponse getUserDetails(String userEmail){
+        AppUser foundUser = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("Could not find"));
+
+        return UserResponse.of(foundUser);
+    }
+
 
 
 

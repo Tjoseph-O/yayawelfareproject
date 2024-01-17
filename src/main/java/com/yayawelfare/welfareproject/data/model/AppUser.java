@@ -1,5 +1,6 @@
 package com.yayawelfare.welfareproject.data.model;
 
+import com.yayawelfare.welfareproject.data.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,10 +29,12 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = IDENTITY)
 //    @TableGenerator(name = "app_user_id_generator", allocationSize = 1)
-    private long id;
+    private Long id;
     @CreatedDate
 //    @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @PrePersist
     public void setCreatedAt(){this.createdDate=LocalDateTime.now();}
