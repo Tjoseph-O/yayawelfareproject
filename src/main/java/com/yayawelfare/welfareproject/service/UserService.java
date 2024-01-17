@@ -7,7 +7,7 @@ import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 
 public interface UserService {
 
-   RegistrationResponse register(RegistrationRequest registrationRequest, String origin);
+   RegistrationResponse register(RegistrationRequest registrationRequest);
 
 
 

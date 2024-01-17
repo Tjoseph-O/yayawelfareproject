@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public RegistrationResponse register(RegistrationRequest registrationRequest, String origin){
+    public RegistrationResponse register(RegistrationRequest registrationRequest){
         AppUser user = new AppUser();
         user.setFirstName(registrationRequest.getFirstName());
         user.setMiddleName(registrationRequest.getMiddleName());
@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService{
         user.setPhoneNumber(registrationRequest.getPhoneNumber());
         user.setAddress(registrationRequest.getAddress());
         user.setPassword(registrationRequest.getPassword());
-        userRepository.save(user);
-        return mapper.map(user, RegistrationResponse.class);
+        AppUser savedUser = userRepository.save(user);
+        return new RegistrationResponse(savedUser.getId());
     }
 
     @Override

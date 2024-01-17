@@ -9,7 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class RegistrationResponse {
-    private String message = "Welcome To NYAYA Welfare!!!";
+//    private String message = "Welcome To NYAYA Welfare!!!";
     private Long id;
-    private Role role;
+//    private Role role;
+
+
 }
