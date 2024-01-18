@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public AppUser getUserById(Long id) throws NyayaWelfareException {
         return userRepository.findById(id).orElseThrow(
-                ()-> new NyayaWelfareException(String.format("User With id %d is not Found", id))
+                ()-> new NyayaWelfareException(String.format("User with id %d is not Found", id))
         );
 
     }
