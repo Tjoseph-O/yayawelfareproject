@@ -1,15 +1,12 @@
-package com.yayawelfare.welfareproject.controller;
+package com.yayawelfare.welfareproject.controllers;
 
 
-import com.yayawelfare.welfareproject.dtos.request.LoginRequest;
 import com.yayawelfare.welfareproject.dtos.request.RegistrationRequest;
 import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
-import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 import com.yayawelfare.welfareproject.exceptions.NyayaWelfareException;
 import com.yayawelfare.welfareproject.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +25,11 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody LoginRequest request){
-        var response = userService.login(request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<UserResponse> login(@RequestBody LoginRequest request){
+//        var response = userService.login(request);
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id){

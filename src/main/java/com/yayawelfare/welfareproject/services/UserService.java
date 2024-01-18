@@ -20,5 +20,7 @@ public interface UserService {
 
     AppUser getUserById(Long id) throws NyayaWelfareException;
 
-    UserResponse login(LoginRequest request);
+    AppUser getUserBy(String phoneNumber);
+
+//    UserResponse login(LoginRequest request);
 }

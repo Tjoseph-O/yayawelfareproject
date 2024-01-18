@@ -1,10 +1,9 @@
 package com.yayawelfare.welfareproject.dtos.request;
 
-import com.yayawelfare.welfareproject.data.model.enums.Role;
+import com.yayawelfare.welfareproject.data.model.enums.Authority;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Setter
@@ -22,7 +21,7 @@ public class RegistrationRequest {
     private String email;
 
     private String phoneNumber;
-    private Role role;
+    private Authority authority;
 
 
 }

@@ -1,25 +1,31 @@
 package com.yayawelfare.welfareproject.dtos.response;
 
-import com.yayawelfare.welfareproject.data.model.AppUser;
-import com.yayawelfare.welfareproject.data.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-
-import java.time.LocalDateTime;
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@Builder
+//@AllArgsConstructor
 //@Data
 //@RequiredArgsConstructor
 //@AllArgsConstructor
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse {
     private String firstName;
     private String middleName;
     private String lastName;
+    private String id;
+    private String phoneNumber;
+//    private String profileImage;
 
 
 
-    public static UserResponse of(AppUser appUser) {
-        return new UserResponse(appUser.getFirstName(), appUser.getMiddleName(), appUser.getLastName());
-    }
+//    public static UserResponse of(AppUser appUser) {
+//        return new UserResponse(appUser.getFirstName(), appUser.getMiddleName(), appUser.getLastName());
+//    }
 }

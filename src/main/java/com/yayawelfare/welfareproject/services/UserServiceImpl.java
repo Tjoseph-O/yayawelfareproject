@@ -2,7 +2,6 @@ package com.yayawelfare.welfareproject.services;
 
 import com.yayawelfare.welfareproject.data.model.AppUser;
 import com.yayawelfare.welfareproject.data.repository.UserRepository;
-import com.yayawelfare.welfareproject.dtos.request.LoginRequest;
 import com.yayawelfare.welfareproject.dtos.request.RegistrationRequest;
 import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
 import com.yayawelfare.welfareproject.dtos.response.UserResponse;
@@ -40,10 +39,9 @@ public class UserServiceImpl implements UserService{
         user.setEmail(registrationRequest.getEmail());
         user.setPhoneNumber(registrationRequest.getPhoneNumber());
         user.setAddress(registrationRequest.getAddress());
-        user.setRole(registrationRequest.getRole());
         user.setPassword(registrationRequest.getPassword());
-        AppUser savedUser = userRepository.save(user);
-//        return new RegistrationResponse(savedUser.getId(), savedUser.getRole());
+        userRepository.save(user);
+//        return new RegistrationResponse(savedUser. savedUser.getId());
         return mapper.map(user, RegistrationResponse.class);
     }
 
@@ -72,28 +70,34 @@ public class UserServiceImpl implements UserService{
 
     }
 
+//    @Override
+//    public UserResponse login(LoginRequest request){
+//        AppUser user = userRepository.findByPhoneNumberAndPassword(request.getPhoneNumber(),request.getPassword())
+//                .orElseThrow(() -> new RuntimeException());
+//        return UserResponse.builder()
+////                .id(user.getId())
+//                .firstName(user.getFirstName())
+//                .middleName(user.getMiddleName())
+//                .lastName(user.getLastName())
+////                .createdDate(user.getCreatedDate())
+//                .build();
+//
+//    }
+
+//    public UserResponse getUserDetails(String userEmail){
+//        AppUser foundUser = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("Could not find"));
+//
+//        return UserResponse.of(foundUser);
+//    }
+
+
     @Override
-    public UserResponse login(LoginRequest request){
-        AppUser user = userRepository.findByPhoneNumberAndPassword(request.getPhoneNumber(),request.getPassword())
-                .orElseThrow(() -> new RuntimeException());
-        return UserResponse.builder()
-//                .id(user.getId())
-                .firstName(user.getFirstName())
-                .middleName(user.getMiddleName())
-                .lastName(user.getLastName())
-//                .createdDate(user.getCreatedDate())
-                .build();
-
+    public AppUser getUserBy(String phoneNumber)  {
+        return userRepository.findByEmail(email).orElseThrow(()->
+                new RuntimeException(
+                        String.format("user with email %s not found", email)
+                ));
     }
-
-    public UserResponse getUserDetails(String userEmail){
-        AppUser foundUser = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("Could not find"));
-
-        return UserResponse.of(foundUser);
-    }
-
-
-
 
 
 }

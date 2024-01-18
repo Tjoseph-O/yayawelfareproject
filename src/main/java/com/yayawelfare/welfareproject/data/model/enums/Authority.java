@@ -1,5 +1,5 @@
 package com.yayawelfare.welfareproject.data.model.enums;
 
-public enum Role {
+public enum Authority {
     ADMIN, VOLUNTEER
 }
