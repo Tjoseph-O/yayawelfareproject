@@ -3,6 +3,7 @@ package com.yayawelfare.welfareproject.services;
 import com.yayawelfare.welfareproject.data.model.AppUser;
 import com.yayawelfare.welfareproject.dtos.request.LoginRequest;
 import com.yayawelfare.welfareproject.dtos.request.RegistrationRequest;
+import com.yayawelfare.welfareproject.dtos.response.LoginResponse;
 import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
 import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 import com.yayawelfare.welfareproject.exceptions.NyayaWelfareException;
@@ -26,5 +27,5 @@ public interface UserService {
 
     AppUser getUserBy(String phoneNumber);
 
-//    UserResponse login(LoginRequest request);
+    LoginResponse login(LoginRequest request);
 }
