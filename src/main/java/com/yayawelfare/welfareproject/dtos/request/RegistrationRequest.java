@@ -11,17 +11,20 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RegistrationRequest {
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String address;
+//    private String firstName;
+//    private String middleName;
+//    private String lastName;
+//    private String address;
 
-    private String password;
+    private String phoneNumber;
+
     @Email(message = "invalid email address",regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
     private String email;
 
-    private String phoneNumber;
-    private Authority authority;
+    private String password;
+
+
+//    private Authority authorities;
 
 
 }

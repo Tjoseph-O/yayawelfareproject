@@ -17,8 +17,6 @@ import lombok.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse {
     private String firstName;
-    private String middleName;
-    private String lastName;
     private String id;
     private String phoneNumber;
 //    private String profileImage;

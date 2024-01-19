@@ -7,16 +7,19 @@ import com.yayawelfare.welfareproject.dtos.response.RegistrationResponse;
 import com.yayawelfare.welfareproject.dtos.response.UserResponse;
 import com.yayawelfare.welfareproject.exceptions.NyayaWelfareException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
-@Service
+@Controller
+@Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
@@ -33,16 +36,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public RegistrationResponse register(RegistrationRequest registrationRequest){
         AppUser user = new AppUser();
-        user.setFirstName(registrationRequest.getFirstName());
-        user.setMiddleName(registrationRequest.getMiddleName());
-        user.setLastName(registrationRequest.getLastName());
+//        user.setFirstName(registrationRequest.getFirstName());
+//        user.setMiddleName(registrationRequest.getMiddleName());
+//        user.setSurname(registrationRequest.getLastName());
         user.setEmail(registrationRequest.getEmail());
         user.setPhoneNumber(registrationRequest.getPhoneNumber());
-        user.setAddress(registrationRequest.getAddress());
+//        user.setAddress(registrationRequest.getAddress());
         user.setPassword(registrationRequest.getPassword());
-        userRepository.save(user);
-//        return new RegistrationResponse(savedUser. savedUser.getId());
-        return mapper.map(user, RegistrationResponse.class);
+        AppUser savedUser = userRepository.save(user);
+        return new RegistrationResponse(savedUser.getId());
+//        return mapper.map(user, RegistrationResponse.class);
     }
 
 
@@ -93,9 +96,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AppUser getUserBy(String phoneNumber)  {
-        return userRepository.findByEmail(email).orElseThrow(()->
+        return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(()->
                 new RuntimeException(
-                        String.format("user with email %s not found", email)
+                        String.format("user with Phone Number %s not found", phoneNumber)
                 ));
     }
 

@@ -13,12 +13,16 @@ public interface UserService {
 
    RegistrationResponse register(RegistrationRequest registrationRequest);
 
-
-    List<UserResponse> getUsers(int page, int size);
+    AppUser getUserById(Long id) throws NyayaWelfareException;
 
     UserResponse getUserBy(Long id) throws NyayaWelfareException;
 
-    AppUser getUserById(Long id) throws NyayaWelfareException;
+
+
+
+    List<UserResponse> getUsers(int page, int size);
+
+
 
     AppUser getUserBy(String phoneNumber);
 

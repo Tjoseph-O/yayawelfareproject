@@ -1,3 +1,8 @@
+
+
+
+
+
 DB_HOST: localhost
 DB_NAME: nyayawelfare
 DB_USERNAME: postgres
@@ -11,7 +16,7 @@ SECRET_KEY: +3bGl4GqFhQLFqxcF+izG7ABBPrPOFDcZPrrV2se3ciF/jSYk72ZVmlU5PxO6iv6ohVT
 sendinblue_api: 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
 sendinblue_mail: https://api.sendinblue.com/v3/smtp/email
 
-app_name: Yaya Welfare Application
+app_name: Loan Hero Application
 app_email: info@loanhero.com
 
 cloud_name: dxaaqbimm

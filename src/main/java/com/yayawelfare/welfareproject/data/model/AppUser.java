@@ -24,10 +24,12 @@ public class AppUser {
 
     private String firstName;
     private String middleName;
-    private String lastName;
+    private String surname;
     private String address;
+    @Column(nullable = false)
     private String password;
     private String email;
+    @Column(unique = true, nullable = false)
     private String phoneNumber;
 
 
@@ -44,7 +46,7 @@ public class AppUser {
     private Gender gender;
 
 
-    private String profileImageUrl;
+//    private String profileImageUrl;
 //    private boolean isVerified; // You have to be present at the venue to be able to be verified
 
     @PrePersist
