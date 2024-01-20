@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.yayawelfare.welfareproject.data.model.enums.Authority.USER;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService{
         user.setEmail(registrationRequest.getEmail());
         user.setPhoneNumber(registrationRequest.getPhoneNumber());
         user.setPassword(registrationRequest.getPassword());
+        user.setAuthorities(List.of(USER));
         AppUser savedUser = userRepository.save(user);
         return new RegistrationResponse(savedUser.getId());
 //        return mapper.map(user, RegistrationResponse.class);
@@ -76,7 +79,7 @@ public class UserServiceImpl implements UserService{
         AppUser user = userRepository.findByPhoneNumberAndPassword(request.getPhoneNumber(),request.getPassword())
                 .orElseThrow(() -> new RuntimeException());
         UserResponse userResponse = new UserResponse();
-        userResponse.setPhoneNumber(user.getPhoneNumber());
+        userResponse.setUsername(user.getPhoneNumber());
 
         return new LoginResponse(user.getPassword());
 
@@ -86,10 +89,10 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public AppUser getUserBy(String phoneNumber)  {
-        return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(()->
+    public AppUser getUserBy(String email)  {
+        return userRepository.findByEmail(email).orElseThrow(()->
                 new RuntimeException(
-                        String.format("user with Phone Number %s not found", phoneNumber)
+                        String.format("user with Phone Number %s not found", email)
                 ));
     }
 

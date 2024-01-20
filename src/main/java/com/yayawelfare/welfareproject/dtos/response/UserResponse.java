@@ -18,7 +18,7 @@ import lombok.*;
 public class UserResponse {
     private String firstName;
     private String id;
-    private String phoneNumber;
+    private String username;
 //    private String profileImage;
 
 
